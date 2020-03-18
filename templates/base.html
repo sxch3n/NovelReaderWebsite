@@ -1,28 +1,29 @@
 {% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Novel Reader</title>        
-        <link rel="stylesheet" href="{% static "bootstrap.css"  %}"/>
-        <link rel="stylesheet" href="{% static "owl.carousel.css" %}"/>
-        <link rel="stylesheet" href="{% static "owl.theme.default.css" %}"/>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css'  %}"/>
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
+        <link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}"/>
         <link
             href="https://fonts.googleapis.com/css?family=Aclonica&display=swap"
             rel="stylesheet"
         />
-        <link rel="stylesheet" href="{% static "css/style.css"  %}" />
+        <link rel="stylesheet" href="{% static 'css/style.css'  %}" />
     </head>
     <body>
         <div class="container">
             <!-- greeting page -->
             <div id="greeting" class="section greeting">
                 <div class="row align-items-center justify-content-between">
-                    <div class="img col align-self-end">
-                        <img src="{% static "undraw_book_lover_mkck.svg" %}"alt="" />
+                    <div class="img col-md-5 align-self-end">
+                        <img src="{% static 'img/undraw_book_lover_mkck.svg' %}"alt="" />
                     </div>
-                    <div class="greeting-words col">
+                    <div class="greeting-words col-md-5">
                         <h3>
                             Welcome back,<br />
                             What do you want to read today?
@@ -69,10 +70,10 @@
                     </div>
                 </div>
                 
-                <div class="book-list owl-carousel card-deck">
+                <div class="owl-carousel book-list card-deck">
                     {% load get_val from data_filters %}
                     {% for novel in novels %}
-                    <div class="card mb-3 book">
+                    <div class="card mb-3 book" onclick="window.location.href='/chapter_list/{{novel.No}}'">
                         <div class="row no-gutters">
                             <div class="col-md-5">
                                 <img class="card-img" src="/static/img/{{novel.No}}.jpg" alt="" />
@@ -104,10 +105,10 @@
             </div>
         </div>
         <!-- Javascript  -->
-        <script src="{% static 'jquery/jquery-3.4.1.js' %}"></script>
-        <script src="{% static 'bootstrap/bootstrap.js' %}"></script>
-        <script src="{% static 'materialize/materialize.js' %}"></script>
-        <script src="{% static 'owlcarousel/owl.carousel.js' %}"></script>
+        <script src="{% static 'js/jquery/jquery-3.4.1.js' %}"></script>
+        <script src="{% static 'js/bootstrap/bootstrap.js' %}"></script>
+        <script src="{% static 'js/materialize/materialize.js' %}"></script>
+        <script src="{% static 'js/owlcarousel/owl.carousel.js' %}"></script>
         <script src="{% static 'js/script.js' %}"></script>
     </body>
 </html>

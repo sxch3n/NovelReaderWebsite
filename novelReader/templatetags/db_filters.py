@@ -1,5 +1,5 @@
 from django import template
-from novels.pydbc.mongodb import MongoDBNovel
+from novelReader.pydbc.mongodb import MongoDBNovel
 from typing import List
 
 register = template.Library()
