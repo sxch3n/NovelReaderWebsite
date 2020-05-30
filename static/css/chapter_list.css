@@ -1,0 +1,49 @@
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+.section {
+    height: 90vh;
+    width: 100%;
+    overflow: hidden;
+}
+/* book infos */
+.book-infos {
+    position: relative;
+}
+.book-infos .img {
+    margin: 20% auto 0 auto;
+    height: 200px;
+    width: 160px;
+    background-color: rgb(168, 168, 168);
+}
+.book-infos .img img {
+    height: 200px;
+    width: 160px;    
+}
+.infos {
+    width: 100%;
+    margin: 40px auto;
+    font-size: 1rem;
+    text-decoration: none;
+    padding: 0;
+}
+.infos .novel-name {
+    font-size: 2.5rem;
+}
+.infos .novel-author {
+    font-size: 1.5rem;
+}
+.infos .latest-chapter a {
+    font-style: italic;
+    color: black;
+}
+/* chapter list */
+.chapter-list {
+    background-color: rgb(235, 228, 139);
+}
+.list-group {
+    max-height: 80vh;
+    overflow-y: scroll;
+}
