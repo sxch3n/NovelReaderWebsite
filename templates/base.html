@@ -1,14 +1,16 @@
-{% load staticfiles %}
-{% load static %}
+{% load staticfiles %} {% load static %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>Novel Reader</title>        
-        <link rel="stylesheet" href="{% static 'css/bootstrap.css'  %}"/>
-        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}"/>
-        <link rel="stylesheet" href="{% static 'css/owl.theme.default.css' %}"/>
+        <title>Novel Reader</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css'  %}" />
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.css' %}" />
+        <link
+            rel="stylesheet"
+            href="{% static 'css/owl.theme.default.css' %}"
+        />
         <link
             href="https://fonts.googleapis.com/css?family=Aclonica&display=swap"
             rel="stylesheet"
@@ -21,7 +23,10 @@
             <div id="greeting" class="section greeting">
                 <div class="row align-items-center justify-content-between">
                     <div class="img col-md-5 align-self-end">
-                        <img src="{% static 'img/undraw_book_lover_mkck.svg' %}"alt="" />
+                        <img
+                            src="{% static 'img/undraw_book_lover_mkck.svg' %}"
+                            alt=""
+                        />
                     </div>
                     <div class="greeting-words col-md-5">
                         <h3>
@@ -51,7 +56,7 @@
 
             <!-- recent read -->
             <div id="recent" class="section recent">
-                <div class="books ">
+                <div class="books">
                     <div class="header row">
                         <h3 class="col">Recent Read</h3>
                         <form action="#" method="post" class="search-box col">
@@ -69,36 +74,53 @@
                         </form>
                     </div>
                 </div>
-                
-                <div class="owl-carousel book-list card-deck">
-                    {% load get_val from data_filters %}
+
+                <div class="owl-carousel book-list card-deck row">
+                    {% load get_val from data_filters %} 
                     {% for novel in novels %}
-                    <div class="card mb-3 book" onclick="window.location.href='/chapter_list/{{novel.No}}'">
+                    <div class="col-sm-6">
+                        <div
+                        class="card mb-3 book"
+                        onclick="window.location.href='/chapter_list/{{novel.No}}'"
+                    >
                         <div class="row no-gutters">
                             <div class="col-md-5">
-                                <img class="card-img" src="/static/img/{{novel.No}}.jpg" alt="" />
+                                <img
+                                    class="card-img"
+                                    src="/static/img/{{novel.No}}.jpg"
+                                    alt=""
+                                />
                             </div>
                             <div class="col-md-7">
                                 <div class="card-body text-center book-infos">
-                                    <h5 class="card-title mt-3 mb-3 text-center book-name">
+                                    <h5
+                                        class="card-title mt-3 mb-3 text-center book-name"
+                                    >
                                         {{ novel.name }}
                                     </h5>
-                                    <h6 class="card-subtitle mb-3 text-center book-author">
+                                    <h6
+                                        class="card-subtitle mb-3 text-center book-author"
+                                    >
                                         by {{ novel.author }}
                                     </h6>
                                     <div class="status">
-                                        <p class="card-text mt-5 mb-0 book-status">
-                                            <small class="text-muted"
-                                                >Status: {{ novel.status }}</small
-                                            >
+                                        <p
+                                            class="card-text mt-5 mb-0 book-status"
+                                        >
+                                            <small class="text-muted">
+                                                Status: {{ novel.status }}
+                                            </small>
                                         </p>
                                         <p class="card-text book-lu">
-                                            <small class="text-muted">Last Updated: 01/23/20</small>
+                                            <small class="text-muted"
+                                                >Last Updated: 01/23/20</small
+                                            >
                                         </p>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                    </div>
                     </div>
                     {% endfor%}
                 </div>

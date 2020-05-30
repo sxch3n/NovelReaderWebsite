@@ -22,10 +22,10 @@
 }
 
 .greeting img {
-    height: 90vh;
-    width: 80vh;
+    height: 60vh;
+    width: 60vh;
     left: 40px;
-    z-index: -1;
+    z-index: -3;
     bottom: 0;
 }
 

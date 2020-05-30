@@ -1,23 +1,45 @@
+{% load static %} {% load add_one minus_one from data_filters %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>{{ chapter.title }}</title>
-</head>
-<body>
-{% load db_filters %}
-<nav>
-    <ul>
-        <li><a href="/">首页</a></li>
-        <li><a href="/novels">书架</a></li>
-        <li><a href=".">目录</a></li>
-    </ul>
-</nav>
-<article>
-    <h1>{{ chapter.title }}</h1>
-    {% for line in chapter.content %}
-        <p> {{ line }} </p>
-    {% endfor %}
-</article>
-</body>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ chapter.title }}</title>
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/chapter.css' %}" />
+        <script language="javascript">
+            document.onkeydown = chang_page;
+            function chang_page() {
+                if (event.keyCode == 37 || event.keyCode == 33)
+                    location = "../{{ chapter.index|minus_one }}";
+                if (event.keyCode == 39 || event.keyCode == 34)
+                    location = "../{{ chapter.index|add_one }}";
+            }
+        </script>
+    </head>
+    <body>
+        <nav>
+            <ul>
+                <li><a href="/">首页</a></li>
+                <li><a href="/novels">书架</a></li>
+                <li><a href=".">目录</a></li>
+            </ul>
+        </nav>
+        <div class="container chapter">
+            <a href="../{{ chapter.index|minus_one }}">上一章</a>
+            <a href="../{{ chapter.index|add_one }}">下一章</a>
+            <article>
+                <h1 class="text-center" style="margin-bottom:40px">
+                    {{ chapter.title }}
+                </h1>
+                {% for line in chapter.content %}
+                <p>{{ line }}</p>
+                {% endfor %}
+            </article>
+            <footer class="text-center">
+                <a href="../{{ chapter.index|minus_one }}">上一章</a>
+                <a href="../{{ chapter.index|add_one }}">下一章</a>
+            </footer>
+        </div>
+    </body>
 </html>

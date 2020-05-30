@@ -1,50 +1,68 @@
+{%load static %}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>{{novel.name}} - 章节列表</title>
-    <style>
-        .hide{
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    {% load data_filters %}
-    {% load db_filters %}
-    <nav>
-        <ul>
-            <li><a href="/">首页</a></li>
-            <li><a href="/novels">书架</a></li>
-        </ul>
-    </nav>
-    <div id="container" class="container">
-        <div id="name"><h1>书名: {{ novel.name }}</h1></div>
-        <div id="info" class="row">
-            <div class="hide"><p id="novel_no">{{novel.No}}</p></div>
-            <div id="author"><p>作者: {{novel.author}}</p></div>
-            <div id="latest-chapter"><a href="{{ novel.chapter_titles|last_idx }}">最新章节: {{ novel.chapter_titles|last_elem}}</a></div>
-            <div id="status"><p>状态: {{ novel.status }}</p></div>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>{{ novel.name }} - Chapter List</title>
+        <link rel="stylesheet" href="{% static 'css/chapter_list.css' %}" />
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}" />
+    </head>
+    <body>
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item">
+                        <a href="/#recent">{{novel.name}}</a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">
+                        Chapter List
+                    </li>
+                </ol>
+            </nav>
+            <div class="row section">
+                <div class="book-infos col">
+                    <div class="img text-center">
+                        <img
+                            src="/static/img/{{novel.No}}.jpg"
+                            alt=""
+                            srcset=""
+                        />
+                    </div>
+                    <div class="infos">
+                        <h4 class="novel-name text-center">{{novel.name}}</h4>
+                        <h6 class="novel-author text-center">
+                            {{novel.author}}
+                        </h6>
+                        <p>status: {{novel.status}}</p>
+                        <p class="latest-chapter">
+                            latest chapter: {% load data_filters %}
+                            <a href="{{ novel.chapter_titles|last_idx }}">
+                                {{novel.chapter_titles|last_elem}}
+                            </a>
+                        </p>
+                    </div>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary">
+                            Read
+                        </button>
+                    </div>
+                </div>
+                <div class="chapter-list col">
+                    <h4 class="text-center">Chapter List</h4>
+                    <div class="list-group">
+                        {% for chapter in novel.chapter_titles%}
+                        <a
+                            href="{{ forloop.counter }}"
+                            class="list-group-item list-group-item-action"
+                        >
+                            {{ forloop.counter }}. {{chapter}}
+                        </a>
+                        {% endfor%}
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="chapter-list">
-                <table border="1">
-                    <tr>
-                    {% for ch in novel.chapter_titles%}
-                        {% if forloop.counter|divisibleby:5 %}
-                            <td><a href='{{ forloop.counter }}'>{{ch}} </a></td>
-                            </tr><tr>
-                        {% else %}
-                            <td><a href='{{ forloop.counter }}'>{{ch}} </a></td>
-                        {% endif %}
-                    {% empty %}
-                    {#  TODO: 3. want to re-scrape content if page not found#}
-                        <p>Chapter not found!</p>
-                    {% endfor%}
-                    </tr>
-            </table>
-        </div>
-    </div>
-</body>
+    </body>
 </html>
