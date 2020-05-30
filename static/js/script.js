@@ -4,9 +4,13 @@ $(".btn-search").on("click", function() {
     $(".btn-search").toggleClass("close");
 });
 
-$(".book").on("click", function() {
-    alert("hello book");
-});
+
 $(document).ready(function(){
-    $(".owl-carousel").owlCarousel();
+    $(".owl-carousel").owlCarousel({
+        margin:10,
+        responsive:{            
+            0:{item:1,},
+            600:{item:3}
+        }
+    });
   });
