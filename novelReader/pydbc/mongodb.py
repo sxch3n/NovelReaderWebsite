@@ -3,7 +3,7 @@ import pymongo
 
 class MongoDBNovel:
     def __init__(self):
-        self.uri = 'localhost'
+        self.uri = 'mongodb+srv://normal:novelreader@cluster0-uzwkl.mongodb.net/test?retryWrites=true&w=majority'
         self.port = 27017
 
     def start_connection(self, collection):
